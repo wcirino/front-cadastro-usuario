@@ -1,0 +1,30 @@
+h1 {
+  color: #084c4c;
+}
+
+a:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+i {
+  color: #084c4c;
+}
+
+.alert-info {
+  background-color: #e9f7f7;
+  border-color: #cfeeee;
+  color: #084c4c;
+}
+
+a.text-dark.d-block:hover i {
+  color: #0d6efd; /* Azul Bootstrap */
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+a.text-dark.d-block:hover p {
+  color: #0d6efd;
+}
+
