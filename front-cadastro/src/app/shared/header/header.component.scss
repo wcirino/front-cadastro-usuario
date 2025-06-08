@@ -1,10 +1,10 @@
 .navbar {
-  background-color: #1e2a38 !important; // mesma cor do menu lateral
+  background-color: var(--cor-principal) !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #offcanvasMenu {
-  background-color: #1e2a38; // Cor escura elegante
+  background-color: var(--cor-principal) !important;
   color: white;
 }
 

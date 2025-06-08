@@ -17,8 +17,10 @@
     <h5 class="offcanvas-title text-white" id="offcanvasMenuLabel">Menu</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
   </div>
+
   <div class="offcanvas-body p-0">
     <ul class="list-group list-group-flush">
+
       <!-- Início -->
       <li class="list-group-item bg-transparent border-0">
         <a routerLink="/home" class="nav-link text-white d-flex align-items-center">
@@ -28,7 +30,8 @@
 
       <!-- Usuários -->
       <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuUsuarios" role="button" aria-expanded="false" aria-controls="submenuUsuarios">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+          href="#submenuUsuarios" role="button" aria-expanded="false" aria-controls="submenuUsuarios">
           <span><i class="bi bi-people-fill me-2"></i> Usuários</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
@@ -41,7 +44,8 @@
 
       <!-- Permissões -->
       <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuPermissoes" role="button" aria-expanded="false" aria-controls="submenuPermissoes">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+          href="#submenuPermissoes" role="button" aria-expanded="false" aria-controls="submenuPermissoes">
           <span><i class="bi bi-shield-lock-fill me-2"></i> Permissões</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
@@ -60,7 +64,8 @@
 
       <!-- Relatórios -->
       <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuRelatorios" role="button" aria-expanded="false" aria-controls="submenuRelatorios">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+          href="#submenuRelatorios" role="button" aria-expanded="false" aria-controls="submenuRelatorios">
           <span><i class="bi bi-bar-chart-line-fill me-2"></i> Relatórios</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
@@ -72,13 +77,17 @@
 
       <!-- Configurações -->
       <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuConfiguracoes" role="button" aria-expanded="false" aria-controls="submenuConfiguracoes">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+          href="#submenuConfiguracoes" role="button" aria-expanded="false" aria-controls="submenuConfiguracoes">
           <span><i class="bi bi-gear-fill me-2"></i> Configurações</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
         <div class="collapse ps-4" id="submenuConfiguracoes">
           <a routerLink="/configuracoes/criar" class="nav-link text-white">Criar Configuração</a>
           <a routerLink="/configuracoes/ajustes" class="nav-link text-white">Ajustes</a>
+          <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#modalTema">
+            Mudar Cor do Sistema
+          </a>
         </div>
       </li>
 
@@ -103,5 +112,70 @@
         </a>
       </li>
     </ul>
+  </div>
+</div>
+
+<!-- ✅ Modal de Seleção de Tema (FORA do menu lateral) -->
+<div #modalRef class="modal fade" id="modalTema" tabindex="-1" aria-labelledby="modalTemaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTemaLabel">Escolha o Tema</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="d-flex flex-column align-items-center gap-2 mb-3">
+          <!-- Primeira linha -->
+          <div class="d-flex justify-content-center gap-3">
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'azul' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #1e2a38" (click)="selecionarTema('azul')"></button>
+            <button class="btn rounded-circle"
+              [ngClass]="temaSelecionado === 'azul-bootstrap' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #0d6efd"
+              (click)="selecionarTema('azul-bootstrap')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'verde' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #198754" (click)="selecionarTema('verde')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'cinza' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #dee2e6" (click)="selecionarTema('cinza')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'roxo' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #4b0082" (click)="selecionarTema('roxo')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'vermelho' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #dc3545"
+              (click)="selecionarTema('vermelho')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'laranja' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #fd7e14" (click)="selecionarTema('laranja')"></button>
+          </div>
+
+          <!-- Segunda linha -->
+          <div class="d-flex justify-content-center gap-3">
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'amarelo' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #ffc107" (click)="selecionarTema('amarelo')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'teal' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #20c997" (click)="selecionarTema('teal')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'preto' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #000000" (click)="selecionarTema('preto')"></button>
+            <button class="btn rounded-circle" [ngClass]="temaSelecionado === 'azul-claro' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #bcd4ff"
+              (click)="selecionarTema('azul-claro')"></button>
+            <button class="btn rounded-circle"
+              [ngClass]="temaSelecionado === 'verde-claro' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #d1f2eb"
+              (click)="selecionarTema('verde-claro')"></button>
+            <button class="btn rounded-circle"
+              [ngClass]="temaSelecionado === 'cinza-claro' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #f8f9fa"
+              (click)="selecionarTema('cinza-claro')"></button>
+            <button class="btn rounded-circle"
+              [ngClass]="temaSelecionado === 'lilas-claro' ? 'border border-white' : ''"
+              style="width: 32px; height: 32px; background-color: #e0bbff"
+              (click)="selecionarTema('lilas-claro')"></button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-dismiss="modal" (click)="aplicarTema()">Aplicar</button>
+      </div>
+    </div>
   </div>
 </div>

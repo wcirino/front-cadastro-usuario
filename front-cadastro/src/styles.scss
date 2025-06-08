@@ -1,3 +1,52 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+:root {
+  --cor-principal: #1e2a38;
+}
+
+.tema-azul {
+  --cor-principal: #1e2a38;
+}
+.tema-azul-bootstrap {
+  --cor-principal: #0d6efd;
+}
+.tema-verde {
+  --cor-principal: #198754;
+}
+.tema-cinza {
+  --cor-principal: #dee2e6;
+}
+.tema-roxo {
+  --cor-principal: #4b0082;
+}
+.tema-vermelho {
+  --cor-principal: #dc3545;
+}
+.tema-laranja {
+  --cor-principal: #fd7e14;
+}
+.tema-amarelo {
+  --cor-principal: #ffc107;
+}
+.tema-teal {
+  --cor-principal: #20c997;
+}
+.tema-preto {
+  --cor-principal: #000000;
+}
+
+.tema-azul-claro     { --cor-principal: #bcd4ff; }
+.tema-verde-claro    { --cor-principal: #d1f2eb; }
+.tema-cinza-claro    { --cor-principal: #f8f9fa; }
+.tema-lilas-claro    { --cor-principal: #e0bbff; }
+
+.navbar,
+#offcanvasMenu {
+  background-color: var(--cor-principal) !important;
+}
+
+:root {
+  --cor-principal: #1e2a38; // azul escuro como padrão
+}
