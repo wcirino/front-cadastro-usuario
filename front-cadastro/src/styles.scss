@@ -50,3 +50,17 @@ body {
 :root {
   --cor-principal: #1e2a38; // azul escuro como padrão
 }
+
+.botao-cor-principal {
+  background-color: var(--cor-principal) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.botao-cor-principal:hover {
+  background-color: #162029 !important; // um pouco mais escura no hover
+}
