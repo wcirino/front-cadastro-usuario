@@ -35,8 +35,9 @@
           <span><i class="bi bi-people-fill me-2"></i> Usuários</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
-        <div class="collapse ps-4" id="submenuUsuarios">
-          <a routerLink="/usuarios/inserir" class="nav-link text-white">Inserir Usuário</a>
+        <div class="collapse ps-4 show" id="submenuUsuarios">
+          <!-- <a routerLink="/cadastro-usuario" class="nav-link text-white">Inserir Usuário</a> -->
+           <a class="nav-link text-white" [routerLink]="'/cadastro-usuario'">Inserir Usuário</a>
           <a routerLink="/usuarios/editar" class="nav-link text-white">Editar Usuário</a>
           <a routerLink="/usuarios/listar" class="nav-link text-white">Listar Usuários</a>
         </div>

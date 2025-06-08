@@ -17,12 +17,12 @@ export class HomeComponent implements OnInit {
     const agora = new Date();
     this.horaAgora = agora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    this.toastr.success('Usuário salvo com sucesso!', 'Sucesso', {
-      timeOut: 5000,
-      positionClass: 'toast-top-right',
-      closeButton: true,
-      progressBar: true
-    });
+    // this.toastr.success('Usuário salvo com sucesso!', 'Sucesso', {
+    //   timeOut: 5000,
+    //   positionClass: 'toast-top-right',
+    //   closeButton: true,
+    //   progressBar: true
+    // });
 
     // this.toastr.error('Falha ao salvar', 'Erro', {
     //   timeOut: 10000,
@@ -31,16 +31,14 @@ export class HomeComponent implements OnInit {
     //   progressBar: false
     // });
 
-    Swal.fire({
-      title: 'Sucesso!',
-      text: 'A ação foi concluída com sucesso.',
-      icon: 'success',
-      confirmButtonText: 'Fechar',
-      customClass: {
-        confirmButton: 'botao-cor-principal'
-      }
-    });
-
-
+    // Swal.fire({
+    //   title: 'Sucesso!',
+    //   text: 'A ação foi concluída com sucesso.',
+    //   icon: 'success',
+    //   confirmButtonText: 'Fechar',
+    //   customClass: {
+    //     confirmButton: 'botao-cor-principal'
+    //   }
+    // });
   }
 }

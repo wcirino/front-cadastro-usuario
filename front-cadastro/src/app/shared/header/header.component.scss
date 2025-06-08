@@ -36,3 +36,17 @@
   background-color: transparent;
   border: none;
 }
+
+/* Corrige links invisíveis dentro de collapse */
+.offcanvas .collapse a.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #dee2e6;
+}
+
+/* Corrige transição e visibilidade */
+.offcanvas .collapse.show {
+  height: auto !important;
+  opacity: 1;
+  visibility: visible;
+}
