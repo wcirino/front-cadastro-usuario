@@ -1,6 +1,7 @@
 <!-- Navbar horizontal -->
+<!-- Navbar horizontal fixa -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark px-3 fixed-top shadow-sm">
-  <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+  <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" data-bs-backdrop="false">
     <i class="bi bi-list"></i>
   </button>
 
@@ -11,8 +12,8 @@
   </div>
 </nav>
 
-<!-- Sidebar lateral (Offcanvas) -->
-<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+<!-- Sidebar lateral -->
+<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel" data-bs-scroll="true" data-bs-backdrop="false">
   <div class="offcanvas-header border-bottom">
     <h5 class="offcanvas-title text-white" id="offcanvasMenuLabel">Menu</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
@@ -22,31 +23,28 @@
     <ul class="list-group list-group-flush">
 
       <!-- Início -->
-      <li class="list-group-item bg-transparent border-0">
+      <li class="list-group-item">
         <a routerLink="/home" class="nav-link text-white d-flex align-items-center">
           <i class="bi bi-house-door-fill me-2"></i> Início
         </a>
       </li>
 
       <!-- Usuários -->
-      <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-          href="#submenuUsuarios" role="button" aria-expanded="false" aria-controls="submenuUsuarios">
+      <li class="list-group-item">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuUsuarios" role="button">
           <span><i class="bi bi-people-fill me-2"></i> Usuários</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
         <div class="collapse ps-4 show" id="submenuUsuarios">
-          <!-- <a routerLink="/cadastro-usuario" class="nav-link text-white">Inserir Usuário</a> -->
-           <a class="nav-link text-white" [routerLink]="'/cadastro-usuario'">Inserir Usuário</a>
-          <a [routerLink]="'cadastro-editar'" class="nav-link text-white">Editar Usuário</a>
-          <a [routerLink]="'cadastro-listar'" class="nav-link text-white">Listar Usuários</a>
+          <a [routerLink]="'/cadastro-usuario'" class="nav-link text-white">Inserir Usuário</a>
+          <a [routerLink]="'/cadastro-editar'" class="nav-link text-white">Editar Usuário</a>
+          <a [routerLink]="'/cadastro-listar'" class="nav-link text-white">Listar Usuários</a>
         </div>
       </li>
 
       <!-- Permissões -->
-      <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-          href="#submenuPermissoes" role="button" aria-expanded="false" aria-controls="submenuPermissoes">
+      <li class="list-group-item">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuPermissoes">
           <span><i class="bi bi-shield-lock-fill me-2"></i> Permissões</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
@@ -57,16 +55,15 @@
       </li>
 
       <!-- Ativar/Desativar -->
-      <li class="list-group-item bg-transparent border-0">
+      <li class="list-group-item">
         <a routerLink="/cadastro-desativar-ativar" class="nav-link text-white d-flex align-items-center">
           <i class="bi bi-person-x-fill me-2"></i> Ativar/Desativar
         </a>
       </li>
 
       <!-- Relatórios -->
-      <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-          href="#submenuRelatorios" role="button" aria-expanded="false" aria-controls="submenuRelatorios">
+      <li class="list-group-item">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuRelatorios">
           <span><i class="bi bi-bar-chart-line-fill me-2"></i> Relatórios</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
@@ -77,41 +74,39 @@
       </li>
 
       <!-- Configurações -->
-      <li class="list-group-item bg-transparent border-0">
-        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-          href="#submenuConfiguracoes" role="button" aria-expanded="false" aria-controls="submenuConfiguracoes">
+      <li class="list-group-item">
+        <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuConfiguracoes">
           <span><i class="bi bi-gear-fill me-2"></i> Configurações</span>
           <i class="bi bi-caret-down-fill"></i>
         </a>
         <div class="collapse ps-4" id="submenuConfiguracoes">
           <a routerLink="/configuracoes/criar" class="nav-link text-white">Criar Configuração</a>
           <a routerLink="/configuracoes/ajustes" class="nav-link text-white">Ajustes</a>
-          <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#modalTema">
-            Mudar Cor do Sistema
-          </a>
+          <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#modalTema">Mudar Cor do Sistema</a>
         </div>
       </li>
 
       <!-- Sobre -->
-      <li class="list-group-item bg-transparent border-0">
+      <li class="list-group-item">
         <a routerLink="/sobre" class="nav-link text-white d-flex align-items-center">
           <i class="bi bi-info-circle-fill me-2"></i> Sobre
         </a>
       </li>
 
       <!-- Alterar Senha -->
-      <li class="list-group-item bg-transparent border-0">
+      <li class="list-group-item">
         <a routerLink="/alterar-senha" class="nav-link text-white d-flex align-items-center">
           <i class="bi bi-key-fill me-2"></i> Alterar Senha
         </a>
       </li>
 
       <!-- Sair -->
-      <li class="list-group-item bg-transparent border-0">
+      <li class="list-group-item">
         <a class="nav-link text-danger d-flex align-items-center">
           <i class="bi bi-box-arrow-right me-2"></i> Sair
         </a>
       </li>
+
     </ul>
   </div>
 </div>

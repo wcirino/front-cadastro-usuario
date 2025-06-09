@@ -50,3 +50,14 @@
   opacity: 1;
   visibility: visible;
 }
+
+#offcanvasMenu {
+   top: 56px !important; // Altura padrão da navbar do Bootstrap
+  width: 260px !important; // padrão costuma ser 300–320px
+}
+
+@media (max-width: 768px) {
+  #offcanvasMenu {
+    width: 100% !important; // mobile continua ocupando a tela toda
+  }
+}
