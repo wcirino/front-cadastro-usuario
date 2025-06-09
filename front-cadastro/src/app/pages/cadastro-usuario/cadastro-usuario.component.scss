@@ -25,3 +25,10 @@ input.form-control {
 .invalid-feedback {
   font-size: 0.875rem;
 }
+
+select.form-select {
+  height: 50px;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}

@@ -1,112 +1,147 @@
 <div class="container-xl px-3 px-md-5 mt-4 mb-5">
-  <div class="w-100 mx-auto" style="max-width: 900px;">
-    <h1 class="text-center fw-bold mb-4">
-      <i class="bi bi-person-plus me-2"></i>Cadastro de Usuário
-    </h1>
+    <div class="w-100 mx-auto" style="max-width: 900px;">
+        <h1 class="text-center fw-bold mb-4">
+            <i class="bi bi-person-plus me-2"></i>Cadastro de Usuário
+        </h1>
 
-    <!-- ALERTAS -->
-    <div *ngIf="sucesso" class="alert alert-success" role="alert">
-      Usuário cadastrado com sucesso!
+        <!-- ALERTAS -->
+        <div *ngIf="sucesso" class="alert alert-success" role="alert">
+            Usuário cadastrado com sucesso!
+        </div>
+        <div *ngIf="erro" class="alert alert-danger" role="alert">
+            Erro ao cadastrar. Tente novamente.
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="cadastrar()">
+            <!-- DADOS PESSOAIS -->
+            <h5 class="mt-4 mb-2">Dados Pessoais</h5>
+            <hr class="mb-3" />
+            <div class="row gy-3">
+                <div class="col-12">
+                    <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                    <input id="username" type="text" formControlName="username" class="form-control" [ngClass]="{
+              'is-invalid': campoInvalido('username'),
+              'is-valid': campoValido('username')
+            }" tabindex="1" autocomplete="username" autofocus />
+                    <div class="invalid-feedback" *ngIf="form.get('username')?.hasError('required')">
+                        Campo obrigatório.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="form.get('username')?.hasError('usernameJaExiste')">
+                        Este nome de usuário já está em uso.
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="firstName" class="form-label">Primeiro nome <span class="text-danger">*</span></label>
+                    <input id="firstName" type="text" formControlName="firstName" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('firstName') }" autocomplete="given-name"
+                        tabindex="2" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="lastName" class="form-label">Último nome <span class="text-danger">*</span></label>
+                    <input id="lastName" type="text" formControlName="lastName" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('lastName') }" autocomplete="family-name"
+                        tabindex="3" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="birthdate" class="form-label">Data de nascimento <span
+                            class="text-danger">*</span></label>
+                    <input id="birthdate" type="date" formControlName="birthdate" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('birthdate') }" tabindex="4" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
+                    <input id="cpf" type="text" formControlName="cpf" mask="000.000.000-00" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('cpf') }" autocomplete="off" tabindex="5" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+            </div>
+
+            <!-- CONTATO -->
+            <h5 class="mt-4 mb-2">Contato</h5>
+            <hr class="mb-3" />
+            <div class="row gy-3">
+                <div class="col-12 col-md-6">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input id="email" type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('email') }" autocomplete="email" tabindex="6" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="phoneNumber" class="form-label">Telefone <span class="text-danger">*</span></label>
+                    <input id="phoneNumber" type="text" formControlName="phoneNumber" mask="(00) 00000-0000"
+                        class="form-control" [ngClass]="{ 'is-invalid': campoInvalido('phoneNumber') }"
+                        autocomplete="tel" tabindex="7" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+            </div>
+
+            <!-- ENDEREÇO -->
+            <h5 class="mt-4 mb-2">Endereço</h5>
+            <hr class="mb-3" />
+            <div class="row gy-3">
+                <div class="col-12">
+                    <label for="address" class="form-label">Endereço <span class="text-danger">*</span></label>
+                    <input id="address" type="text" formControlName="address" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('address') }" autocomplete="street-address"
+                        tabindex="8" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="state" class="form-label">Estado <span class="text-danger">*</span></label>
+                    <select id="state" formControlName="state" class="form-select"
+                        [ngClass]="{ 'is-invalid': campoInvalido('state') }" tabindex="9" (change)="carregarCidades()">
+                        <option value="" disabled selected>Selecione um estado</option>
+                        <option *ngFor="let uf of estados" [value]="uf.sigla">{{ uf.nome }}</option>
+                    </select>
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <!-- CIDADE -->
+                <div class="col-12 col-md-6">
+                    <label for="city" class="form-label">Cidade <span class="text-danger">*</span></label>
+                    <select id="city" formControlName="city" class="form-select"
+                        [ngClass]="{ 'is-invalid': campoInvalido('city') }" [disabled]="!cidadesFiltradas.length"
+                        tabindex="10">
+                        <option value="" disabled selected>Selecione uma cidade</option>
+                        <option *ngFor="let cidade of cidadesFiltradas" [value]="cidade">{{ cidade }}</option>
+                    </select>
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="zipCode" class="form-label">CEP <span class="text-danger">*</span></label>
+                    <input id="zipCode" type="text" formControlName="zipCode" mask="00000-000" class="form-control"
+                        [ngClass]="{ 'is-invalid': campoInvalido('zipCode') }" autocomplete="postal-code"
+                        tabindex="11" />
+                    <div class="invalid-feedback">Campo obrigatório.</div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="complemento" class="form-label">Complemento</label>
+                    <input id="complemento" type="text" class="form-control" placeholder="Ex: Apto 101, Bloco B"
+                        tabindex="11" />
+                </div>
+            </div>
+
+
+
+            <!-- BOTÕES -->
+            <div class="d-flex justify-content-end flex-wrap gap-2 mt-5">
+                <button type="submit" class="btn btn-dark">
+                    <i class="bi bi-save me-1"></i> Cadastrar
+                </button>
+                <button type="button" class="btn btn-outline-secondary" (click)="limpar()">
+                    <i class="bi bi-x-circle me-1"></i> Limpar
+                </button>
+            </div>
+        </form>
     </div>
-    <div *ngIf="erro" class="alert alert-danger" role="alert">
-      Erro ao cadastrar. Tente novamente.
-    </div>
-
-    <form [formGroup]="form" (ngSubmit)="cadastrar()">
-      <!-- DADOS PESSOAIS -->
-      <h5 class="mt-4 mb-2">Dados Pessoais</h5>
-      <hr class="mb-3" />
-      <div class="row gy-3">
-        <div class="col-12">
-          <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-          <input id="username" type="text" formControlName="username" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('username') }" tabindex="1" autocomplete="username" autofocus />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="firstName" class="form-label">Primeiro nome <span class="text-danger">*</span></label>
-          <input id="firstName" type="text" formControlName="firstName" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('firstName') }" autocomplete="given-name" tabindex="2" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="lastName" class="form-label">Último nome <span class="text-danger">*</span></label>
-          <input id="lastName" type="text" formControlName="lastName" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('lastName') }" autocomplete="family-name" tabindex="3" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="birthdate" class="form-label">Data de nascimento <span class="text-danger">*</span></label>
-          <input id="birthdate" type="date" formControlName="birthdate" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('birthdate') }" tabindex="4" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
-          <input id="cpf" type="text" formControlName="cpf" mask="000.000.000-00" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('cpf') }" autocomplete="off" tabindex="5" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-      </div>
-
-      <!-- CONTATO -->
-      <h5 class="mt-4 mb-2">Contato</h5>
-      <hr class="mb-3" />
-      <div class="row gy-3">
-        <div class="col-12 col-md-6">
-          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-          <input id="email" type="email" formControlName="email" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('email') }" autocomplete="email" tabindex="6" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="phoneNumber" class="form-label">Telefone <span class="text-danger">*</span></label>
-          <input id="phoneNumber" type="text" formControlName="phoneNumber" mask="(00) 00000-0000" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('phoneNumber') }" autocomplete="tel" tabindex="7" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-      </div>
-
-      <!-- ENDEREÇO -->
-      <h5 class="mt-4 mb-2">Endereço</h5>
-      <hr class="mb-3" />
-      <div class="row gy-3">
-        <div class="col-12">
-          <label for="address" class="form-label">Endereço <span class="text-danger">*</span></label>
-          <input id="address" type="text" formControlName="address" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('address') }" autocomplete="street-address" tabindex="8" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="city" class="form-label">Cidade <span class="text-danger">*</span></label>
-          <input id="city" type="text" formControlName="city" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('city') }" autocomplete="address-level2" tabindex="9" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <label for="zipCode" class="form-label">CEP <span class="text-danger">*</span></label>
-          <input id="zipCode" type="text" formControlName="zipCode" mask="00000-000" class="form-control"
-            [ngClass]="{ 'is-invalid': campoInvalido('zipCode') }" autocomplete="postal-code" tabindex="10" />
-          <div class="invalid-feedback">Campo obrigatório.</div>
-        </div>
-      </div>
-
-      <!-- BOTÕES -->
-      <div class="d-flex justify-content-end flex-wrap gap-2 mt-5">
-        <button type="submit" class="btn btn-dark">
-          <i class="bi bi-save me-1"></i> Cadastrar
-        </button>
-        <button type="button" class="btn btn-outline-secondary" (click)="limpar()">
-          <i class="bi bi-x-circle me-1"></i> Limpar
-        </button>
-      </div>
-    </form>
-  </div>
 </div>
