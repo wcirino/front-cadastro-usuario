@@ -45,3 +45,12 @@ input.form-control {
     opacity: 0.85;
   }
 }
+
+.bi-eye-fill { color: #0d6efd; }     /* azul para visualizar */
+.bi-pencil-fill { color: #ffc107; }  /* amarelo para editar */
+.bi-power { color: #dc3545; }        /* vermelho para desativar */
+
+.btn:active {
+  transform: scale(0.98);
+}
+
