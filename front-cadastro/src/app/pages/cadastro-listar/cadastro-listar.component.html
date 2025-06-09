@@ -1,92 +1,98 @@
-<div class="container mt-4">
+<div class="container-xl px-3 px-md-5 mt-4 mb-5">
+  <div class="w-100 mx-auto" style="max-width: 900px;">
+    <h1 class="text-center fw-bold mb-2">
+      <i class="bi bi-list-ul me-2"></i>Lista de Usuários
+    </h1>
+  </div>
+  <p class="text-muted mb-1">Gerencie os usuários cadastrados.</p>
+  <hr class="mb-4 mt-0" />
+
   <form [formGroup]="form">
     <div class="row g-3">
-      <div class="col-md-4">
-        <label class="form-label">Número de Registro</label>
+      <div class="col-md-2">
+        <label class="form-label fw-semibold text-muted">Número de Registro</label>
         <input type="text" class="form-control" formControlName="registrationNumber" />
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Nome</label>
+      <div class="col-md-5">
+        <label class="form-label fw-semibold text-muted">Nome</label>
         <input type="text" class="form-control" formControlName="firstName" />
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Sobrenome</label>
+      <div class="col-md-5">
+        <label class="form-label fw-semibold text-muted">Sobrenome</label>
         <input type="text" class="form-control" formControlName="lastName" />
       </div>
       <div class="col-md-4">
-        <label class="form-label">Email</label>
+        <label class="form-label fw-semibold text-muted">Email</label>
         <input type="email" class="form-control" formControlName="email" />
       </div>
       <div class="col-md-4">
-        <label class="form-label">Cidade</label>
+        <label class="form-label fw-semibold text-muted">Cidade</label>
         <input type="text" class="form-control" formControlName="city" />
       </div>
       <div class="col-md-4">
-        <label class="form-label">CPF</label>
-        <input type="text" class="form-control" formControlName="cpf" />
+        <label class="form-label fw-semibold text-muted">CPF</label>
+        <input type="text" class="form-control fw-medium" formControlName="cpf" />
       </div>
     </div>
 
-    <div class="mt-5 d-flex justify-content-end gap-2">
-      <button type="button" class="btn btn-primary" (click)="pesquisar()">Pesquisar</button>
-      <button type="button" class="btn btn-secondary" (click)="limpar()">Limpar</button>
+    <div class="d-flex justify-content-end flex-wrap gap-2 mt-4 mb-4">
+      <button type="button" class="btn btn-dark" (click)="pesquisar()">
+        <i class="bi bi-search me-1"></i> Pesquisar
+      </button>
+      <button type="button" class="btn btn-outline-secondary" (click)="limpar()">
+        <i class="bi bi-x-circle me-1"></i> Limpar
+      </button>
     </div>
   </form>
 
-  <div class="table-responsive mt-6">
+  <div class="table-responsive shadow-sm">
     <table mat-table [dataSource]="dataSource" class="w-100 text-center clean-table">
 
-      <!-- Número -->
       <ng-container matColumnDef="registrationNumber">
         <th mat-header-cell *matHeaderCellDef>Número</th>
-        <td mat-cell *matCellDef="let element">{{ element.registrationNumber }}</td>
+        <td mat-cell *matCellDef="let el">{{ el.registrationNumber }}</td>
       </ng-container>
 
-      <!-- Nome -->
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+        <td mat-cell *matCellDef="let el">{{ el.firstName }}</td>
       </ng-container>
 
-      <!-- Sobrenome -->
       <ng-container matColumnDef="lastName">
         <th mat-header-cell *matHeaderCellDef>Sobrenome</th>
-        <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+        <td mat-cell *matCellDef="let el">{{ el.lastName }}</td>
       </ng-container>
 
-      <!-- Email -->
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        <td mat-cell *matCellDef="let el">{{ el.email }}</td>
       </ng-container>
 
-      <!-- Cidade -->
       <ng-container matColumnDef="city">
         <th mat-header-cell *matHeaderCellDef>Cidade</th>
-        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+        <td mat-cell *matCellDef="let el">{{ el.city }}</td>
       </ng-container>
 
-      <!-- CPF -->
       <ng-container matColumnDef="cpf">
         <th mat-header-cell *matHeaderCellDef>CPF</th>
-        <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+        <td mat-cell *matCellDef="let el" class="fw-medium">{{ el.cpf }}</td>
       </ng-container>
 
-      <!-- Ações -->
       <ng-container matColumnDef="acoes">
-        <th mat-header-cell *matHeaderCellDef class="text-end">Ação</th>
-        <td mat-cell *matCellDef="let element" class="text-end pe-4">
-          <i class="bi bi-eye-fill text-primary me-2" style="cursor: pointer;" title="Visualizar" (click)="visualizar(element)"></i>
-          <i class="bi bi-pencil-fill text-warning me-2" style="cursor: pointer;" title="Editar" (click)="editar(element)"></i>
-          <i class="bi bi-power text-danger" style="cursor: pointer;" title="Ativar/Desativar" (click)="alternarStatus(element)"></i>
+        <th mat-header-cell *matHeaderCellDef class="text-end pe-4">Ação</th>
+        <td mat-cell *matCellDef="let el" class="text-end pe-4 d-flex align-items-center justify-content-end gap-2">
+          <i class="bi bi-eye-fill text-secondary action-icon" title="Visualizar" (click)="visualizar(el)"></i>
+          <i class="bi bi-pencil-fill text-secondary action-icon" title="Editar" (click)="editar(el)"></i>
+          <i class="bi bi-power text-secondary action-icon" title="Ativar/Desativar" (click)="alternarStatus(el)"></i>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-line"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="row-hover"></tr>
     </table>
   </div>
 
-  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  <div class="mt-4"></div>
+  <div class="mt-4 pt-2">
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
 </div>
