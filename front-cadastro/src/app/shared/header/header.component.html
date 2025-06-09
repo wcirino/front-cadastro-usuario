@@ -38,8 +38,8 @@
         <div class="collapse ps-4 show" id="submenuUsuarios">
           <!-- <a routerLink="/cadastro-usuario" class="nav-link text-white">Inserir Usuário</a> -->
            <a class="nav-link text-white" [routerLink]="'/cadastro-usuario'">Inserir Usuário</a>
-          <a routerLink="/usuarios/editar" class="nav-link text-white">Editar Usuário</a>
-          <a routerLink="/usuarios/listar" class="nav-link text-white">Listar Usuários</a>
+          <a [routerLink]="'cadastro-editar'" class="nav-link text-white">Editar Usuário</a>
+          <a [routerLink]="'cadastro-listar'" class="nav-link text-white">Listar Usuários</a>
         </div>
       </li>
 

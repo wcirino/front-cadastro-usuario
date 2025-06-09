@@ -1,1 +1,110 @@
-<p>cadastro-editar works!</p>
+<div class="container-xl px-3 px-md-5 mt-4 mb-5">
+  <div class="w-100 mx-auto" style="max-width: 900px;">
+    <h1 class="text-center fw-bold mb-4">
+      <i class="bi bi-pencil-square me-2"></i>Editar Usuário
+    </h1>
+
+    <!-- ALERTAS -->
+    <div *ngIf="sucesso" class="alert alert-success" role="alert">
+      Usuário atualizado com sucesso!
+    </div>
+    <div *ngIf="erro" class="alert alert-danger" role="alert">
+      Erro ao atualizar. Tente novamente.
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="atualizar()">
+      <h5 class="mt-4 mb-2">Dados Pessoais</h5>
+      <hr class="mb-3" />
+      <div class="row gy-3">
+        <div class="col-12 col-md-6">
+          <label for="username" class="form-label">Username</label>
+          <input id="username" type="text" class="form-control" [value]="form.get('username')?.value" disabled />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="registrationNumber" class="form-label">Número de Registro</label>
+          <input id="registrationNumber" type="text" class="form-control" [value]="form.get('registrationNumber')?.value" disabled />
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="firstName" class="form-label">Primeiro nome <span class="text-danger">*</span></label>
+          <input id="firstName" type="text" formControlName="firstName" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('firstName') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="lastName" class="form-label">Último nome <span class="text-danger">*</span></label>
+          <input id="lastName" type="text" formControlName="lastName" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('lastName') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="birthdate" class="form-label">Data de nascimento <span class="text-danger">*</span></label>
+          <input id="birthdate" type="date" formControlName="birthdate" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('birthdate') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="cpf" class="form-label">CPF <span class="text-danger">*</span></label>
+          <input id="cpf" type="text" formControlName="cpf" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('cpf') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+      </div>
+
+      <h5 class="mt-4 mb-2">Contato</h5>
+      <hr class="mb-3" />
+      <div class="row gy-3">
+        <div class="col-12 col-md-6">
+          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+          <input id="email" type="email" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('email') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="phoneNumber" class="form-label">Telefone <span class="text-danger">*</span></label>
+          <input id="phoneNumber" type="text" formControlName="phoneNumber" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('phoneNumber') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+      </div>
+
+      <h5 class="mt-4 mb-2">Endereço</h5>
+      <hr class="mb-3" />
+      <div class="row gy-3">
+        <div class="col-12">
+          <label for="address" class="form-label">Endereço <span class="text-danger">*</span></label>
+          <input id="address" type="text" formControlName="address" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('address') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="city" class="form-label">Cidade <span class="text-danger">*</span></label>
+          <input id="city" type="text" formControlName="city" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('city') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label for="zipCode" class="form-label">CEP <span class="text-danger">*</span></label>
+          <input id="zipCode" type="text" formControlName="zipCode" class="form-control"
+            [ngClass]="{ 'is-invalid': campoInvalido('zipCode') }" />
+          <div class="invalid-feedback">Campo obrigatório.</div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end flex-wrap gap-2 mt-5">
+        <button type="submit" class="btn btn-dark">
+          <i class="bi bi-save me-1"></i> Atualizar
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="limpar()">
+          <i class="bi bi-x-circle me-1"></i> Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

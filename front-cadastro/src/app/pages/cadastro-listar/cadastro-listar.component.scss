@@ -1,0 +1,61 @@
+input.form-control {
+  height: 48px;
+  border-radius: 0;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    border-color: #343a40;
+    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.25);
+  }
+}
+
+.btn {
+  min-width: 130px;
+  padding: 0.6rem 1.5rem;
+  height: 46px;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invalid-feedback {
+  font-size: 0.875rem;
+}
+
+select.form-select {
+  height: 50px;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+::ng-deep .mat-table {
+  background-color: white;
+  border-collapse: collapse !important;
+}
+
+::ng-deep .mat-header-cell,
+::ng-deep .mat-cell {
+  display: table-cell !important;
+  vertical-align: middle;
+  text-align: center !important;  // <-- Centraliza header e dados
+  border: none !important;
+}
+
+::ng-deep .mat-header-row {
+  border-bottom: 1px solid #dee2e6 !important; // <-- Suaviza linha do header
+}
+
+::ng-deep .mat-row {
+  border-bottom: none !important;
+}
+
+::ng-deep .mat-header-cell {
+  font-weight: bold;
+  background-color: white !important;
+  text-align: center !important;  // <-- Corrige a centralização do header
+}

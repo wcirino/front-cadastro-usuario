@@ -8,6 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 // Máscara
 import { NgxMaskModule } from 'ngx-mask';
@@ -41,8 +45,12 @@ import { HomeComponent } from './home/home.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatIconModule,
 
-    // NgxMask - aqui sem o forRoot (já deve estar no AppModule)
+    // Máscara
     NgxMaskModule
   ]
 })
