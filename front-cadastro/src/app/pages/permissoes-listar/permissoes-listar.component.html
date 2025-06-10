@@ -1,1 +1,43 @@
-<p>permissoes-listar works!</p>
+<div class="container mt-4">
+  <h3 class="mb-4"><i class="bi bi-shield-lock-fill me-2"></i>Adicionar Permissões</h3>
+
+  <form [formGroup]="form" class="mb-3 d-flex gap-2">
+    <input type="text" class="form-control" formControlName="search" placeholder="Buscar por usuário ou registro" />
+    <button type="button" class="btn btn-dark" (click)="buscarUsuario()">Buscar</button>
+  </form>
+
+  <div *ngIf="user" class="mb-3">
+    <strong>Usuário:</strong> {{ user.username }} |
+    <strong>Registro:</strong> {{ user.registrationNumber }}
+  </div>
+
+  <div class="row" *ngIf="user">
+    <div class="col-md-5">
+      <h6>Permissões Disponíveis</h6>
+      <ul class="list-group">
+        <li *ngFor="let p of availablePermissions" class="list-group-item d-flex justify-content-between align-items-center">
+          {{ p }}
+          <button class="btn btn-sm btn-success" (click)="adicionar(p)">Adicionar</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-2 d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-left-right fs-2"></i>
+    </div>
+
+    <div class="col-md-5">
+      <h6>Permissões Selecionadas</h6>
+      <ul class="list-group">
+        <li *ngFor="let p of selectedPermissions" class="list-group-item d-flex justify-content-between align-items-center">
+          {{ p }}
+          <button class="btn btn-sm btn-danger" (click)="remover(p)">Remover</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-4" *ngIf="user">
+    <button class="btn btn-primary" (click)="salvar()">Salvar Permissões</button>
+  </div>
+</div>

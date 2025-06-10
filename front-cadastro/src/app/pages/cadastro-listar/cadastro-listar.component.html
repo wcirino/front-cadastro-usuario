@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-end flex-wrap gap-2 mt-4 mb-4">
+    <div class="d-flex justify-content-end flex-wrap gap-2 mt-4 mb-4 ">
       <button type="button" class="btn btn-dark" (click)="pesquisar()">
         <i class="bi bi-search me-1"></i> Pesquisar
       </button>
@@ -81,9 +81,9 @@
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef class="text-end pe-4">Ação</th>
         <td mat-cell *matCellDef="let el" class="text-end pe-4 d-flex align-items-center justify-content-end gap-2">
-          <i class="bi bi-eye-fill text-secondary action-icon" title="Visualizar" (click)="visualizar(el)"></i>
-          <i class="bi bi-pencil-fill text-secondary action-icon" title="Editar" (click)="editar(el)"></i>
-          <i class="bi bi-power text-secondary action-icon" title="Ativar/Desativar" (click)="alternarStatus(el)"></i>
+          <i class="bi bi-eye-fill text-secondary action-icon mt-3" title="Visualizar" (click)="visualizar(el)"></i>
+          <i class="bi bi-pencil-fill text-secondary action-icon mt-3" title="Editar" (click)="editar(el)"></i>
+          <i class="bi bi-power text-secondary action-icon mt-3" title="Ativar/Desativar" (click)="alternarStatus(el)"></i>
         </td>
       </ng-container>
 
@@ -96,3 +96,54 @@
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
+
+<!-- Modal Visualizar / Editar Usuário -->
+<div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalUsuarioLabel">
+          {{ modoModal === 'visualizar' ? 'Visualizar Usuário' : 'Editar Usuário' }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form *ngIf="formModal" [formGroup]="formModal">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label">Registro</label>
+              <input type="text" class="form-control" formControlName="registrationNumber" [readonly]="modoModal === 'visualizar'">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-control" formControlName="firstName" [readonly]="modoModal === 'visualizar'">
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">Sobrenome</label>
+              <input type="text" class="form-control" formControlName="lastName" [readonly]="modoModal === 'visualizar'">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" formControlName="email" [readonly]="modoModal === 'visualizar'">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Cidade</label>
+              <input type="text" class="form-control" formControlName="city" [readonly]="modoModal === 'visualizar'">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">CPF</label>
+              <input type="text" class="form-control" formControlName="cpf" [readonly]="modoModal === 'visualizar'">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button *ngIf="modoModal === 'editar'" class="btn btn-primary" (click)="salvarEdicao()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -52,12 +52,12 @@
 }
 
 #offcanvasMenu {
-   top: 56px !important; // Altura padrão da navbar do Bootstrap
-  width: 260px !important; // padrão costuma ser 300–320px
+   top: 56px !important; 
+  width: 260px !important; 
 }
 
 @media (max-width: 768px) {
   #offcanvasMenu {
-    width: 100% !important; // mobile continua ocupando a tela toda
+    width: 100% !important;
   }
 }

@@ -19,8 +19,11 @@ input.form-control {
 }
 
 ::ng-deep .mat-header-row {
-  border-bottom: 1px solid #dee2e6 !important;
+  background-color: #343a40 !important; // cinza escuro tipo modal
+  color: #fff !important;
+  border-bottom: none !important;
 }
+
 
 ::ng-deep .mat-row {
   border-bottom: none !important;
@@ -28,8 +31,10 @@ input.form-control {
 
 ::ng-deep .mat-header-cell {
   font-weight: bold;
-  background-color: white !important;
+  color: #ffffff !important;
+  background-color: #343a40 !important;
 }
+
 
 .row-hover:hover {
   background-color: #c5c1c1;
@@ -53,4 +58,33 @@ input.form-control {
 .btn:active {
   transform: scale(0.98);
 }
+
+.bi-eye-fill     { color: #0d6efd !important; }   // azul vivo
+.bi-pencil-fill  { color: #ffc107 !important; }   // amarelo vibrante
+.bi-power        { color: #dc3545 !important; }   // vermelho forte
+
+.action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  font-size: 1.2rem;
+  margin-top: 2px;
+
+  &:hover {
+    transform: scale(1.2);
+    opacity: 0.85;
+  }
+}
+
+
+td.mat-cell .action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem; // opcional: deixa o ícone mais visível
+  margin-top: 2px; // ajusta se quiser descer um pouco
+}
+
 
