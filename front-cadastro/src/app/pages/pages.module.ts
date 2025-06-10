@@ -25,6 +25,8 @@ import { PermissoesAdicionarComponent } from './permissoes-adicionar/permissoes-
 import { PermissoesListarComponent } from './permissoes-listar/permissoes-listar.component';
 import { HomeComponent } from './home/home.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     CadastroUsuarioComponent,
@@ -38,6 +40,7 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
 
     // Material
     MatInputModule,

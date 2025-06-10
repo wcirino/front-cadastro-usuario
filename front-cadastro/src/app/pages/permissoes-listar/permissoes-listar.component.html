@@ -1,43 +1,78 @@
-<div class="container mt-4">
-  <h3 class="mb-4"><i class="bi bi-shield-lock-fill me-2"></i>Adicionar Permissões</h3>
+<div class="container mt-4 pb-5">
+  <div class="w-100 mx-auto text-center" style="max-width: 900px;">
+    <h1 class="fw-bold mb-2">
+      <i class="bi bi-shield-lock-fill me-2"></i> Adicionar Permissões
+    </h1>
+  </div>
 
-  <form [formGroup]="form" class="mb-3 d-flex gap-2">
-    <input type="text" class="form-control" formControlName="search" placeholder="Buscar por usuário ou registro" />
-    <button type="button" class="btn btn-dark" (click)="buscarUsuario()">Buscar</button>
+  <p class="text-muted mb-1">Gerencie os acessos e permissões dos usuários.</p>
+  <hr class="mb-4 mt-0" />
+
+  <!-- Campo de busca -->
+  <form [formGroup]="form" class="input-group mb-4">
+    <input type="text" class="form-control" formControlName="search" placeholder="Buscar por usuário ou registro">
+    <button class="btn btn-dark" type="button" (click)="buscarUsuario()">Buscar</button>
   </form>
 
-  <div *ngIf="user" class="mb-3">
-    <strong>Usuário:</strong> {{ user.username }} |
-    <strong>Registro:</strong> {{ user.registrationNumber }}
+  <!-- Usuário encontrado -->
+  <div *ngIf="user" class="mb-4 fw-semibold">
+    <span class="text-muted">Usuário:</span> {{ user.username }} |
+    <span class="text-muted">Registro:</span> {{ user.registrationNumber }}
   </div>
 
-  <div class="row" *ngIf="user">
+  <!-- Grid de permissão -->
+  <div class="row">
+    <!-- Permissões Disponíveis -->
     <div class="col-md-5">
-      <h6>Permissões Disponíveis</h6>
-      <ul class="list-group">
-        <li *ngFor="let p of availablePermissions" class="list-group-item d-flex justify-content-between align-items-center">
-          {{ p }}
-          <button class="btn btn-sm btn-success" (click)="adicionar(p)">Adicionar</button>
-        </li>
-      </ul>
+      <h5 class="text-center fw-semibold mb-3">Permissões Disponíveis</h5>
+      <div style="max-height: 500px; overflow-y: auto;">
+        <ul class="list-group">
+          <li *ngFor="let p of availablePermissions"
+            class="list-group-item d-flex justify-content-between align-items-center">
+            {{ p }}
+            <button class="btn btn-success btn-sm" (click)="adicionar(p)">
+              <i class="bi bi-plus-circle me-1"></i> Adicionar
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="col-md-2 d-flex align-items-center justify-content-center">
-      <i class="bi bi-arrow-left-right fs-2"></i>
+    <!-- Ícone de transferência -->
+    <div class="col-md-2 d-flex justify-content-center align-items-center">
+      <i class="bi bi-arrow-left-right fs-3 text-muted"></i>
     </div>
 
+    <!-- Permissões Selecionadas -->
     <div class="col-md-5">
-      <h6>Permissões Selecionadas</h6>
-      <ul class="list-group">
-        <li *ngFor="let p of selectedPermissions" class="list-group-item d-flex justify-content-between align-items-center">
-          {{ p }}
-          <button class="btn btn-sm btn-danger" (click)="remover(p)">Remover</button>
-        </li>
-      </ul>
+      <h5 class="text-center fw-semibold mb-3">
+        Permissões Selecionadas <span class="badge bg-primary">{{ selectedPermissions.length }}</span>
+      </h5>
+      <div style="max-height: 485px; overflow-y: auto;">
+        <ul class="list-group">
+          <li *ngFor="let p of selectedPermissions"
+            class="list-group-item d-flex justify-content-between align-items-center">
+            {{ p }}
+            <button class="btn btn-danger btn-sm" (click)="remover(p)">
+              <i class="bi bi-x-circle me-1"></i> Remover
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Botão remover todas -->
+      <div class="mt-2">
+        <button class="btn btn-outline-danger w-100" (click)="removerTodas()">
+          <i class="bi bi-x-circle me-2"></i> Remover todas as permissões
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="mt-4" *ngIf="user">
-    <button class="btn btn-primary" (click)="salvar()">Salvar Permissões</button>
+  <!-- Botão salvar -->
+  <div class="text-start mt-4 mb-5">
+    <button class="btn btn-primary" (click)="salvar()">
+      <i class="bi bi-save me-2"></i> Salvar Permissões
+    </button>
   </div>
 </div>

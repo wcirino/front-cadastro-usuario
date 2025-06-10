@@ -9,7 +9,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class PermissoesListarComponent implements OnInit {
 
   form!: FormGroup;
-  allPermissions: string[] = ['ADMIN', 'EDITOR', 'VIEWER', 'FINANCEIRO', 'RELATORIOS'];
+ allPermissions: string[] = [
+  'ADMIN',
+  'EDITOR',
+  'VIEWER',
+  'FINANCEIRO',
+  'RELATORIOS',
+  'SUPORTE',
+  'USUARIO_BASICO',
+  'GERENTE',
+  'COORDENADOR',
+  'AUDITOR',
+  'MARKETING',
+  'DEVOPS',
+  'TI_ADMIN',
+  'RH_ANALISTA',
+  'CLIENTE_INTERNO'
+];
+
   selectedPermissions: string[] = [];
 
   user: any = null;
@@ -28,7 +45,7 @@ export class PermissoesListarComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -77,5 +94,10 @@ export class PermissoesListarComponent implements OnInit {
 
     console.log('📦 Payload para envio:', payload);
   }
+
+  removerTodas(): void {
+    this.selectedPermissions = [];
+  }
+
 }
 
