@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-permissoes-adicionar',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissoesAdicionarComponent implements OnInit {
 
-  constructor() { }
+  form!: FormGroup;
+
+  // Lista de sistemas disponíveis
+  sistemas: string[] = ['SISTEMA_ERP', 'PORTAL_RH', 'FINANCEIRO', 'ACADEMICO', 'INTRANET'];
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      permission_name: ['', Validators.required],
+      description: [''],
+      sistema: ['', Validators.required]
+    });
   }
 
+  salvar(): void {
+    if (this.form.invalid) {
+      Swal.fire('Atenção', 'Preencha todos os campos obrigatórios.', 'warning');
+      return;
+    }
+
+    const payload = this.form.value;
+
+    // Enviar para o backend
+    console.log('🔐 Permissão cadastrada:', payload);
+
+    Swal.fire('Sucesso', 'Permissão cadastrada com sucesso.', 'success');
+    this.form.reset();
+  }
 }

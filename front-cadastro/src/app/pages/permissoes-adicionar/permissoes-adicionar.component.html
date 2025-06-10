@@ -1,1 +1,41 @@
-<p>permissoes-adicionar works!</p>
+<div class="container mt-4 pb-5" style="max-width: 600px;">
+  <h4 class="fw-bold mb-3 text-center">
+    <i class="bi bi-shield-plus me-2"></i> Cadastrar Nova Permissão
+  </h4>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <!-- Nome da Permissão -->
+    <div class="mb-3">
+      <label for="permission_name" class="form-label fw-semibold">Nome da Permissão *</label>
+      <input type="text" class="form-control" id="permission_name" formControlName="permission_name"
+             [ngClass]="{ 'is-invalid': form.get('permission_name')?.invalid && form.get('permission_name')?.touched }" />
+      <div *ngIf="form.get('permission_name')?.invalid && form.get('permission_name')?.touched" class="invalid-feedback">
+        Este campo é obrigatório.
+      </div>
+    </div>
+
+<!-- Sistema -->
+    <div class="mb-3">
+      <label for="sistema" class="form-label fw-semibold">Sistema *</label>
+      <select class="form-select" id="sistema" formControlName="sistema"
+              [ngClass]="{ 'is-invalid': form.get('sistema')?.invalid && form.get('sistema')?.touched }">
+        <option value="" disabled selected>Selecione o sistema</option>
+        <option *ngFor="let s of sistemas" [value]="s">{{ s }}</option>
+      </select>
+      <div *ngIf="form.get('sistema')?.invalid && form.get('sistema')?.touched" class="invalid-feedback">
+        Selecione um sistema.
+      </div>
+    </div>
+
+    <!-- Descrição -->
+    <div class="mb-3">
+      <label for="description" class="form-label fw-semibold">Descrição</label>
+      <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+    </div>
+
+    <!-- Botão -->
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-save me-1"></i> Salvar Permissão
+    </button>
+  </form>
+</div>

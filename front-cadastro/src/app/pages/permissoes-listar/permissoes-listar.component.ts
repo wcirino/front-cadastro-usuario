@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-permissoes-listar',
@@ -82,18 +84,34 @@ export class PermissoesListarComponent implements OnInit {
     this.selectedPermissions = this.selectedPermissions.filter(p => p !== permission);
   }
 
-  salvar(): void {
-    if (!this.user) return;
+salvar(): void {
+  //if (!this.user) return;
 
-    const payload = this.selectedPermissions.map(p => ({
-      userId: this.user.userId,
-      username: this.user.username,
-      registrationNumber: this.user.registrationNumber,
-      permissionName: p
-    }));
+  Swal.fire({
+    title: 'Deseja salvar as permissões?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, salvar',
+    cancelButtonText: 'Não',
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const payload = this.selectedPermissions.map(p => ({
+        userId: this.user.userId,
+        username: this.user.username,
+        registrationNumber: this.user.registrationNumber,
+        permissionName: p
+      }));
 
-    console.log('📦 Payload para envio:', payload);
-  }
+      console.log('📦 Payload para envio:', payload);
+
+      // aqui você pode chamar o service para salvar se tiver
+      Swal.fire('Salvo!', 'Permissões salvas com sucesso.', 'success');
+    }
+  });
+}
+
 
   removerTodas(): void {
     this.selectedPermissions = [];
