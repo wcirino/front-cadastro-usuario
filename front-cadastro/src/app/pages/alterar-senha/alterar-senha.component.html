@@ -1,1 +1,48 @@
-<p>alterar-senha works!</p>
+<div class="container mt-4" style="max-width: 500px;">
+    <h4 class="fw-bold mb-4">
+        <i class="bi bi-lock-fill me-2"></i> Alterar Senha
+    </h4>
+
+    <form [formGroup]="form" (ngSubmit)="alterarSenha()">
+        <!-- Senha atual -->
+        <div class="mb-3 position-relative">
+            <label class="form-label fw-semibold">Senha Atual *</label>
+            <input [type]="showAtual ? 'text' : 'password'" class="form-control" formControlName="senhaAtual">
+            <i class="bi" [ngClass]="showAtual ? 'bi-eye-slash' : 'bi-eye'" (click)="showAtual = !showAtual"
+                style="position: absolute; top: 38px; right: 10px; cursor: pointer;"></i>
+        </div>
+
+        <!-- Nova senha -->
+        <div class="mb-3 position-relative">
+            <label class="form-label fw-semibold">Nova Senha *</label>
+            <input [type]="showNova ? 'text' : 'password'" class="form-control" formControlName="novaSenha"
+                (input)="verificarForcaSenha()" />
+            <i class="bi" [ngClass]="showNova ? 'bi-eye-slash' : 'bi-eye'" (click)="showNova = !showNova"
+                style="position: absolute; top: 38px; right: 10px; cursor: pointer;"></i>
+
+            <!-- Força da senha -->
+            <div class="mt-1">
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" [ngClass]="barraForcaClasse" [style.width]="barraForca + '%'"></div>
+                </div>
+                <small class="text-muted">{{ forcaTexto }}</small>
+            </div>
+        </div>
+
+        <!-- Confirmar nova senha -->
+        <div class="mb-3 position-relative">
+            <label class="form-label fw-semibold">Confirmar Nova Senha *</label>
+            <input [type]="showConfirm ? 'text' : 'password'" class="form-control" formControlName="confirmarSenha">
+            <i class="bi" [ngClass]="showConfirm ? 'bi-eye-slash' : 'bi-eye'" (click)="showConfirm = !showConfirm"
+                style="position: absolute; top: 38px; right: 10px; cursor: pointer;"></i>
+            <div *ngIf="form.hasError('senhaDiferente') && form.get('confirmarSenha')?.touched"
+                class="text-danger small mt-1">
+                As senhas não coincidem.
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+            <i class="bi bi-shield-lock me-1"></i> Alterar Senha
+        </button>
+    </form>
+</div>

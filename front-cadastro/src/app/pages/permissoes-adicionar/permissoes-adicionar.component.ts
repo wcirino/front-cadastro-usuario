@@ -14,7 +14,7 @@ export class PermissoesAdicionarComponent implements OnInit {
   // Lista de sistemas disponíveis
   sistemas: string[] = ['SISTEMA_ERP', 'PORTAL_RH', 'FINANCEIRO', 'ACADEMICO', 'INTRANET'];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -30,12 +30,23 @@ export class PermissoesAdicionarComponent implements OnInit {
       return;
     }
 
-    const payload = this.form.value;
+    Swal.fire({
+      title: 'Deseja salvar a permissão?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, salvar',
+      cancelButtonText: 'Não'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const payload = this.form.value;
 
-    // Enviar para o backend
-    console.log('🔐 Permissão cadastrada:', payload);
+        // Enviar para o backend
+        console.log('🔐 Permissão cadastrada:', payload);
 
-    Swal.fire('Sucesso', 'Permissão cadastrada com sucesso.', 'success');
-    this.form.reset();
+        Swal.fire('Sucesso', 'Permissão cadastrada com sucesso.', 'success');
+        this.form.reset();
+      }
+    });
   }
+
 }

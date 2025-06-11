@@ -26,6 +26,9 @@ import { PermissoesListarComponent } from './permissoes-listar/permissoes-listar
 import { HomeComponent } from './home/home.component';
 
 import { FormsModule } from '@angular/forms';
+import { SobreComponent } from './sobre/sobre.component';
+import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
+import { Erro404Component } from './erro404/erro404.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { FormsModule } from '@angular/forms';
     CadastroDesativarAtivarComponent,
     PermissoesAdicionarComponent,
     PermissoesListarComponent,
-    HomeComponent
+    HomeComponent,
+    SobreComponent,
+    AlterarSenhaComponent,
+    Erro404Component
   ],
   imports: [
     CommonModule,
