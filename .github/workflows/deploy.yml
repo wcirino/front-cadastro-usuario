@@ -1,5 +1,8 @@
 name: Deploy Angular to GitHub Pages Main
 
+permissions:
+  contents: write  # 🔐 Permite push no repositório
+
 on:
   push:
     branches:
@@ -23,9 +26,8 @@ jobs:
           cd front-cadastro
           npm install
 
-      - name: ✅ Executar testes 
-        run: |
-          echo "Todos os testes passaram com sucesso!"
+      - name: ✅ Executar testes (fake)
+        run: echo "Todos os testes passaram com sucesso!"
 
       - name: 🏗️ Build do projeto Angular
         run: |
