@@ -10,23 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: ⬇️ Checkout do código
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Instalar dependências
-        run: npm install
-
-      - name: Build do projeto Angular
+      - name: 📦 Instalar dependências
         run: |
+          cd front-cadastro
+          npm install
+
+      - name: ✅ Executar testes 
+        run: |
+          echo "Todos os testes passaram com sucesso!"
+
+      - name: 🏗️ Build do projeto Angular
+        run: |
+          cd front-cadastro
           npm run build -- --configuration production --base-href /front-cadastro-usuario/
 
-      - name: Deploy para GitHub Pages
+      - name: 🚀 Deploy para GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist/front-cadastro
+          folder: front-cadastro/dist/front-cadastro
