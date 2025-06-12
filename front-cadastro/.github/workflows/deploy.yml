@@ -10,24 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm install
 
-      - name: Run fake tests
-        run: echo "✅ Todos os testes passaram!"
+      - name: Build do projeto Angular
+        run: |
+          npm run build -- --configuration production --base-href /front-cadastro-usuario/
 
-      - name: Build project
-        run: npm run build -- --configuration production --base-href /front-cadastro-usuario/
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy para GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
