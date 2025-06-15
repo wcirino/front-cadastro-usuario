@@ -30,6 +30,11 @@ import { SobreComponent } from './sobre/sobre.component';
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { Erro404Component } from './erro404/erro404.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { NovaSenhaComponent } from './nova-senha/nova-senha.component';
+import { NovaSenhaLoginComponent } from './nova-senha-login/nova-senha-login.component';
+import { RecuperarAcessoComponent } from './recuperar-acesso/recuperar-acesso.component';
+import { RecuperarLoginComponent } from './recuperar-login/recuperar-login.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,12 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     SobreComponent,
     AlterarSenhaComponent,
-    Erro404Component
+    Erro404Component,
+    LoginComponent,
+    NovaSenhaComponent,
+    NovaSenhaLoginComponent,
+    RecuperarAcessoComponent,
+    RecuperarLoginComponent
   ],
   imports: [
     CommonModule,
