@@ -29,6 +29,7 @@ import { FormsModule } from '@angular/forms';
 import { SobreComponent } from './sobre/sobre.component';
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { Erro404Component } from './erro404/erro404.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { Erro404Component } from './erro404/erro404.component';
     MatIconModule,
 
     // Máscara
-    NgxMaskModule
+    NgxMaskModule,
+    HttpClientModule    
   ]
 })
 export class PagesModule { }

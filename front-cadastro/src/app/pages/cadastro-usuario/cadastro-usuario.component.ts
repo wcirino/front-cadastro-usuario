@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { ESTADOS_BR } from 'src/app/model/form.constants';
 import { CIDADES_BR } from 'src/app/model/cidades.constants';
+import { usuarioService } from 'src/app/service/UsuarioService';
 import { of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -12,15 +13,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cadastro-usuario.component.scss']
 })
 export class CadastroUsuarioComponent implements OnInit {
+
   form!: FormGroup;
   sucesso = false;
   erro = false;
 
   estados = ESTADOS_BR;
-  cidades: string[] = [];
   cidadesFiltradas: string[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: usuarioService
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -87,7 +91,7 @@ export class CadastroUsuarioComponent implements OnInit {
         enabled: true,
         lastLogin: new Date().toISOString()
       },
-      registrationNumber: 1073741824,
+      registrationNumber: 1073741824, // Depois pode gerar dinâmico se quiser
       firstName: formValue.firstName,
       lastName: formValue.lastName,
       email: formValue.email,
@@ -99,31 +103,32 @@ export class CadastroUsuarioComponent implements OnInit {
       cpf: formValue.cpf
     };
 
-    try {
-      console.log('Payload final:', payload);
-      this.sucesso = true;
-      this.form.reset();
-
-      Swal.fire({
-        title: 'Sucesso!',
-        text: 'Usuário cadastrado com sucesso.',
-        icon: 'success',
-        confirmButtonText: 'Fechar',
-        customClass: { confirmButton: 'botao-cor-principal' }
-      });
-
-    } catch {
-      this.erro = true;
-
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Não foi possível cadastrar. Tente novamente.',
-        icon: 'error',
-        confirmButtonText: 'Fechar',
-        timer: 10000,
-        showConfirmButton: false
-      });
-    }
+    this.usuarioService.criarUsuario(payload).subscribe({
+      next: () => {
+        this.sucesso = true;
+        this.form.reset();
+        this.cidadesFiltradas = [];
+        Swal.fire({
+          title: 'Sucesso!',
+          text: 'Usuário cadastrado com sucesso.',
+          icon: 'success',
+          confirmButtonText: 'Fechar',
+          customClass: { confirmButton: 'botao-cor-principal' }
+        });
+      },
+      error: (err) => {
+        console.error('Erro no cadastro:', err);
+        this.erro = true;
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Não foi possível cadastrar. Tente novamente.',
+          icon: 'error',
+          confirmButtonText: 'Fechar',
+          timer: 10000,
+          showConfirmButton: false
+        });
+      }
+    });
   }
 
   limpar(): void {
